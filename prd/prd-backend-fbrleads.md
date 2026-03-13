@@ -567,27 +567,27 @@ OLLAMA_MODEL=llama3.1:8b
 OLLAMA_TIMEOUT_SECONDS=15
 
 # ══ LLM CAMADA 2 — Claude API ══
-ANTHROPIC_API_KEY=sk-ant-...              # NUNCA commitar
+ANTHROPIC_API_KEY=sk-ant-REMOVIDO
 ANTHROPIC_MODEL=claude-sonnet-4-6
 ANTHROPIC_TIMEOUT_SECONDS=30
 
 # ══ LLM CAMADA 3 — GPT-4o (reserva) ══
-OPENAI_API_KEY=sk-...                     # NUNCA commitar
+OPENAI_API_KEY=sk-REMOVIDO
 OPENAI_MODEL=gpt-4o
 
 # ══ INTEGRAÇÕES EXTERNAS ══
-ZEROBOUNCE_API_KEY=zb-...                 # NUNCA commitar
-APIFY_API_TOKEN=apify_...                 # NUNCA commitar
-FIRECRAWL_API_KEY=fc-...                  # NUNCA commitar
+ZEROBOUNCE_API_KEY=zb-REMOVIDO
+APIFY_API_TOKEN=apify_REMOVIDO
+FIRECRAWL_API_KEY=fc-REMOVIDO
 
 # ══ POSTAL MAIL SERVER ══
 POSTAL_API_URL=https://postal.fbr.internal
-POSTAL_API_KEY=postal-...                 # NUNCA commitar
-POSTAL_WEBHOOK_SECRET=...                 # HMAC-SHA256 — NUNCA commitar
+POSTAL_API_KEY=postal-REMOVIDO
+POSTAL_WEBHOOK_SECRET=REMOVIDO
 
 # ══ FBR-CLICK INTEGRATION ══
 FBR_CLICK_API_URL=https://fbr-click.com/api
-FBR_CLICK_WEBHOOK_SECRET=...              # HMAC-SHA256 — NUNCA commitar
+FBR_CLICK_WEBHOOK_SECRET=REMOVIDO
 FBR_CLICK_CHANNEL_LEADS=chn_...           # ID do canal #leads-qualificados
 
 # ══ OPENCLAW GATEWAY ══

@@ -1,0 +1,28 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "type": "text",
+      "title": "Bootstrap Status",
+      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 0},
+      "options": {
+        "mode": "markdown",
+        "content": "# FBR-Leads Monitoring\n\nUse este dashboard como ponto inicial para validar Prometheus e Grafana enquanto os exporters dedicados ainda nao foram adicionados."
+      }
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": ["fbr-leads"],
+  "templating": {"list": []},
+  "time": {"from": "now-6h", "to": "now"},
+  "timezone": "browser",
+  "title": "FBR-Leads Overview",
+  "version": 1
+}

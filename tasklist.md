@@ -2,6 +2,24 @@
 
 Fonte principal: `prd/plano-implantacao.md`, `prd/prd-backend-fbrleads.md` e `prd/prd-frontend-fbrleads.md`.
 
+## Checklist de servidor
+
+- [ ] Provisionar VPS Ubuntu 24.04 com CPU, RAM e disco do PRD
+- [ ] Criar usuario de deploy e endurecer SSH
+- [ ] Instalar Docker, Docker Compose plugin e Tailscale
+- [ ] Validar conectividade da VPS com o Mac Mini e Ollama via Tailscale
+- [ ] Clonar o repositorio na VPS
+- [ ] Criar `.env` de producao com todos os secrets reais
+- [ ] Ajustar `APP_DOMAIN`, `BACKEND_URL`, `FRONTEND_URL` e integracoes externas
+- [ ] Publicar certificados TLS e confirmar os paths montados pelo Nginx
+- [ ] Configurar DNS principal e registros SPF, DKIM e DMARC
+- [ ] Subir `postgres`, `redis`, `openclaw-gateway`, `fastapi`, `frontend`, `n8n`, `prometheus`, `grafana` e `nginx`
+- [ ] Validar migrations, healthchecks e proxy reverso
+- [ ] Validar login do dashboard, proxy `/api/proxy` e handoff SQL
+- [ ] Validar Grafana, Prometheus e backup
+- [ ] Registrar bots/agentes no FBR-Click e validar feedback real
+- [ ] Executar checklist de homologacao final descrito em `DEPLOY_SERVER.md`
+
 ## Skills locais selecionadas
 
 | Skill local | Uso no projeto |
@@ -32,10 +50,6 @@ Fonte principal: `prd/plano-implantacao.md`, `prd/prd-backend-fbrleads.md` e `pr
 - [x] Criar indexes de performance
 - [x] Adicionar seed inicial de workspace, dominio e ICP
 
-Skills foco:
-- `backend-security-coder`
-- `backend-dev-guidelines`
-
 ## Batch 3 - Backend Core
 
 - [x] Expandir app factory com routers por dominio
@@ -45,11 +59,7 @@ Skills foco:
 - [x] Construir campaigns, writer e dispatcher inicial
 - [x] Criar webhooks Postal e FBR-Click com HMAC
 - [x] Implementar audit log append-only basico
-
-Skills foco:
-- `backend-security-coder`
-- `backend-dev-guidelines`
-- `machine-learning-ops-ml-pipeline`
+- [x] Expor endpoint inicial de intelligence report
 
 ## Batch 4 - OpenClaw Agents
 
@@ -68,36 +78,39 @@ Skills foco:
 
 ## Batch 6 - Frontend Dashboard
 
+- [x] Separar o frontend em `frontend/` para nao conflitar com o backend Python
 - [x] Criar app Next.js 15 com TypeScript strict
 - [x] Configurar `iron-session`, login e middleware
 - [x] Implementar proxy `/api/proxy/[...path]`
 - [x] Aplicar design system em `layout.tsx` e `globals.css`
 - [x] Implementar paginas base `domains`, `leads`, `icp`, `campaigns`, `agents`, `reports`
-- [ ] Instalar dependencias e validar build real com `npm run build`
-- [ ] Conectar telas aos endpoints reais do backend
-
-Skills foco:
-- `frontend-dev-guidelines`
-- `ui-skills`
+- [x] Conectar domains, leads, campaigns e reports aos endpoints reais do backend
+- [x] Instalar dependencias e validar `typecheck` e `build` em `frontend/`
+- [x] Preparar Dockerfile do frontend para deploy no servidor
 
 ## Batch 7 - Integracao FBR-Click
 
-- [ ] Criar handoff de SQL para o FBR-Click
-- [ ] Registrar Cadenciador Bot
-- [ ] Processar feedback `deal.won` e `deal.lost`
-- [ ] Configurar publicacao de relatorios no canal dedicado
+- [x] Criar rota de handoff SQL dedicada
+- [x] Montar payload de SQL com contexto completo do lead
+- [x] Enviar handoff para o FBR-Click via HTTP async
+- [x] Processar feedback `deal.won` e `deal.lost` com `deal_id` e `reason`
+- [ ] Registrar Cadenciador Bot no FBR-Click real
+- [ ] Configurar publicacao de relatorios no canal dedicado em ambiente real
+- [ ] Validar ponta a ponta com o endpoint real do FBR-Click
 
 ## Batch 8 - Producao e Entrega
 
-- [ ] Adicionar Grafana e Prometheus
-- [ ] Criar rotina de backup
+- [x] Adicionar Prometheus e Grafana ao compose
+- [x] Criar rotina de backup com `scripts/backup.ps1`
+- [x] Documentar operacao basica em `docs-runbook.md`
+- [x] Adicionar frontend ao compose para deploy integrado
 - [ ] Executar teste de carga de 1000 leads
-- [ ] Validar fallback das 3 camadas de LLM
-- [ ] Atualizar README final e handoff operacional
+- [ ] Validar fallback das 3 camadas de LLM em runtime
+- [ ] Atualizar handoff operacional final com evidencias de producao
 
 ## Ordem recomendada de execucao imediata
 
-1. Instalar dependencias do frontend e validar build.
-2. Subir a stack local com `docker compose up --build`.
-3. Conectar o dashboard aos endpoints reais via proxy.
-4. Partir para Postal, FBR-Click e refinamento dos 13 agentes.
+1. Preencher `.env` de producao e revisar `DEPLOY_SERVER.md`.
+2. Subir a stack completa no servidor com `docker compose up --build -d`.
+3. Validar frontend, API, Grafana, n8n e handoff SQL.
+4. Partir para Postal e homologacao final com FBR-Click.
